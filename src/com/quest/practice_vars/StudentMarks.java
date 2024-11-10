@@ -10,6 +10,13 @@ public class StudentMarks {
         while (true) {
             //getting number of student from user
             System.out.print("Enter the number of students (1-100): ");
+
+            //handle if user enters other than integer
+            while(!sc.hasNextInt())
+            {
+                System.out.println("Invalid input. Please enter a number between 1 and 100.");
+                sc.next();
+            }
             numberOfStudents = sc.nextInt();
             if (numberOfStudents >= 1 && numberOfStudents <= 100) {
                 break;
@@ -29,7 +36,7 @@ public class StudentMarks {
             int englishScore = getValidScore(sc, "English");
 
 
-            //finding  total score ,average
+                        //finding  total score ,average
             int totalScore = mathScore + scienceScore + englishScore;
             double averageScore = totalScore / 3.0;
             String grade = calculateGrade(averageScore);

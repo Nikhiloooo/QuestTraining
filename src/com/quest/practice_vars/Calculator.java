@@ -5,18 +5,45 @@ public class Calculator
     public static void main(String[] args)
     {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Please enter the starting number: ");
-        double res = sc.nextDouble();
+        double res = 0;
+
+        // Input for starting number with validation
+        while (true) {
+            System.out.println("Please enter the starting number: ");
+            if (sc.hasNextDouble()) {
+                res = sc.nextDouble();
+                break;
+            } else {
+                System.out.println("Invalid input. Please enter a numeric value.");
+                sc.next(); // Clear the invalid input
+            }
+        }
+
         System.out.println("current result: " + res);
         boolean continueOperation=true;
         System.out.println();
+
         while(continueOperation)
         {
             System.out.println("1.Addition\n2.Suntraction \n3.Multiplication\n4.Division\n5.Squareroot\n6.Clear current result \n7.exit");
             System.out.println();
             System.out.println("Enter your choice: ");
-            int choice = sc.nextInt();
+            int choice=0;
 
+            while (true)
+            {
+                if (sc.hasNextInt())
+                {
+                    choice=sc.nextInt();
+                    break;
+                }
+                else{
+                    System.out.println("Invalid input. Please enter a numeric value.");
+                    sc.next();
+                }
+
+
+            }
             switch(choice)
             {
                 case 1:
@@ -47,7 +74,8 @@ public class Calculator
                     {
                         res = res/divnum;
                         System.out.println("Current result: " + res);
-                    } else
+                    }
+                    else
                     {
                         System.out.println("Error: Division by zero is not allowed.");
                     }
@@ -92,5 +120,6 @@ public class Calculator
             }
         }
     }
+
 
 }
