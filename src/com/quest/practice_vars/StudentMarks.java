@@ -5,26 +5,8 @@ public class StudentMarks {
     public static void main(String[] args)
     {
         Scanner sc = new Scanner(System.in);
-        int numberOfStudents ;
-        //checking the number of student is in the range from 1 to 100   other wise   ask the user to giev valid number
-        while (true) {
-            //getting number of student from user
-            System.out.print("Enter the number of students (1-100): ");
+        int numberOfStudents = getNumberOfStudents(sc);
 
-            //handle if user enters other than integer
-            while(!sc.hasNextInt())
-            {
-                System.out.println("Invalid input. Please enter a number between 1 and 100.");
-                sc.next();
-            }
-            numberOfStudents = sc.nextInt();
-            if (numberOfStudents >= 1 && numberOfStudents <= 100) {
-                break;
-            } else {
-                System.out.println("Invalid input. Please enter a number between 1 and 100.");
-            }
-        }
-        sc.nextLine();
         //itrate to each student to get the marks for each subject
         for (int i = 1; i <= numberOfStudents; i++) {
             System.out.println("enter the name of student " + i + ":");
@@ -74,6 +56,31 @@ public class StudentMarks {
             }
         }
         System.out.println("Summary: " + numberOfStudents + " students processed.");
+    }
+
+    //method to get and verify the number of students
+    private static int getNumberOfStudents(Scanner sc) {
+        int numberOfStudents ;
+        //checking the number of student is in the range from 1 to 100   other wise   ask the user to giev valid number
+        while (true) {
+            //getting number of student from user
+            System.out.print("Enter the number of students (1-100): ");
+
+            //handle if user enters other than integer
+            while(!sc.hasNextInt())
+            {
+                System.out.println("Invalid input. Please enter a number between 1 and 100.");
+                sc.next();
+            }
+            numberOfStudents = sc.nextInt();
+            if (numberOfStudents >= 1 && numberOfStudents <= 100) {
+                break;
+            } else {
+                System.out.println("Invalid input. Please enter a number between 1 and 100.");
+            }
+        }
+        sc.nextLine();
+        return numberOfStudents;
     }
 
 

@@ -5,19 +5,7 @@ public class Calculator
     public static void main(String[] args)
     {
         Scanner sc = new Scanner(System.in);
-        double res = 0;
-
-        // Input for starting number with validation
-        while (true) {
-            System.out.println("Please enter the starting number: ");
-            if (sc.hasNextDouble()) {
-                res = sc.nextDouble();
-                break;
-            } else {
-                System.out.println("Invalid input. Please enter a numeric value.");
-                sc.next(); // Clear the invalid input
-            }
-        }
+        double res = getRes(sc);
 
         System.out.println("current result: " + res);
         boolean continueOperation=true;
@@ -119,6 +107,23 @@ public class Calculator
                 }
             }
         }
+    }
+
+    private static double getRes(Scanner sc) {
+        double res = 0;
+
+        // Input for starting number with validation
+        while (true) {
+            System.out.println("Please enter the starting number: ");
+            if (sc.hasNextDouble()) {
+                res = sc.nextDouble();
+                break;
+            } else {
+                System.out.println("Invalid input. Please enter a numeric value.");
+                sc.next(); // Clear the invalid input
+            }
+        }
+        return res;
     }
 
 
