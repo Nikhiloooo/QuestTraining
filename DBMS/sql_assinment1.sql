@@ -88,7 +88,6 @@ ALTER TABLE Books ADD COLUMN genre VARCHAR(50);
 SELECT COUNT(1)  FROM Borrowers;
 
 SELECT SUM(price)  FROM Books;
-
 SELECT AVG(price)  FROM Books;
 
 
