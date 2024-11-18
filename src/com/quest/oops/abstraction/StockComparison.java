@@ -15,15 +15,14 @@ public class StockComparison {
         String sector = sc.nextLine();
         int n = getNumOfDays(sc);
 
-
         int[] equityPrices = new int[n];
         System.out.println("Enter prices:");
         for (int i = 0; i < n; i++) {
-            equityPrices[i] = sc.nextInt();
+            equityPrices[i] = getNumOfDays(sc);
         }
 
         // Input for Commodity Stock
-        sc.nextLine(); // Consume newline
+        sc.nextLine();
         System.out.println("\nEnter details for Commodity Stock:");
         System.out.print("Stock Name: ");
         String commodityName = sc.nextLine();
@@ -36,7 +35,7 @@ public class StockComparison {
         int[] commodityPrices = new int[n];
         System.out.println("Enter prices:");
         for (int i = 0; i < n; i++) {
-            commodityPrices[i] = sc.nextInt();
+            commodityPrices[i] = getNumOfDays(sc);
         }
 
         // Create objects for stocks
