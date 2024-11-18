@@ -187,7 +187,8 @@ WHERE reservation_id=1;
 
 SELECT r.*
 FROM Rooms r
-LEFT JOIN Reservations res ON r.room_id = res.room_id 
+LEFT JOIN Reservations res
+    ON r.room_id = res.room_id
     AND (res.check_in_date <= '2024-12-05' AND res.check_out_date >= '2024-12-01')
 WHERE r.status = 'available'
   AND res.reservation_id IS NULL;

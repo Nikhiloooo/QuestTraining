@@ -1,4 +1,4 @@
-
++
  -- 1. Convert the following table into 1NF:
      --  - Table: Orders
       --    - Columns: `OrderID`, `CustomerName`, `ProductNames` (where `ProductNames` might contain multiple product names separated by commas).
