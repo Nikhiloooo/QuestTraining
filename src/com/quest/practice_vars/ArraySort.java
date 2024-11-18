@@ -1,15 +1,17 @@
 package com.quest.practice_vars;
 
+import java.util.Arrays;
+
 public class ArraySort {
     public static void main(String[] args) {
         int[] num = {5, 2, 9, 1, 5, 6};
 
         int[] sortedArray = sortArray(num);
-
-        System.out.println("Sorted array:");
-        for(int i = 0; i < sortedArray.length; i++) {
-            System.out.print(sortedArray[i] + " ");
-        }
+        System.out.println(Arrays.toString(sortedArray));
+//        System.out.println("Sorted array:");
+//        for(int i = 0; i < sortedArray.length; i++) {
+//            System.out.print(sortedArray[i] + " ");
+//        }
     }
 
 

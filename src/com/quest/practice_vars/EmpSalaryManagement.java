@@ -7,7 +7,6 @@ public class EmpSalaryManagement {
         Scanner sc = new Scanner(System.in);
 
         int numOfEmployee = getNumOfEmployee(sc);
-        sc.nextLine();
 
         //initializing arrays tro store name,basesalary,monthlysalary,bonus,annualsalary
         String[] names = new String[numOfEmployee];
@@ -53,6 +52,8 @@ public class EmpSalaryManagement {
 
             }
             numOfEmployee = sc.nextInt();
+            sc.nextLine();
+
             if (numOfEmployee >= 1 && numOfEmployee <= 100) {
                 break;
             } else {

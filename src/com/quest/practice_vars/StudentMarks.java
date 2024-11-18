@@ -73,19 +73,20 @@ public class StudentMarks {
                 sc.next();
             }
             numberOfStudents = sc.nextInt();
+            sc.nextLine();
             if (numberOfStudents >= 1 && numberOfStudents <= 100) {
                 break;
             } else {
                 System.out.println("Invalid input. Please enter a number between 1 and 100.");
             }
         }
-        sc.nextLine();
+
         return numberOfStudents;
     }
 
 
     //fumction  to enter the score for each subject
-    public static int getValidScore(Scanner sc, String subject) {
+    private static int getValidScore(Scanner sc, String subject) {
         int score;
         System.out.print("Enter the score for " + subject +":");
         while (true)
@@ -96,6 +97,7 @@ public class StudentMarks {
                 sc.next();
             }
             score = sc.nextInt();
+            sc.nextLine();
             if (score >= 0 && score <= MAX_SCORE)
             {
                 break;
@@ -105,7 +107,7 @@ public class StudentMarks {
                 System.out.println("Invalid score. Please enter a score between 0 and "+MAX_SCORE);
             }
         }
-        sc.nextLine();
+
         return score;
     }
 

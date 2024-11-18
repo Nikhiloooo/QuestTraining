@@ -7,11 +7,14 @@ public class AdvancedSalesReport {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+
+
         //initializing the variable
         int numOfProducts = getNumOfProducts(sc);
         String[] products = new String[numOfProducts];
         double[][] inventory = new double[numOfProducts][2];// inventory[i][0] = stock, inventory[i][1] = price
         int[] quantitySold = new int[numOfProducts];
+
 
 
         for (int i = 0; i < numOfProducts; i++) {
@@ -31,6 +34,7 @@ public class AdvancedSalesReport {
         generateSalesSummaryByPriceRange(sc,products,inventory,quantitySold);
         trackOutOfStockProducts(products, inventory);
     }
+
 
 //to get the number of products
     private static int getNumOfProducts(Scanner sc) {

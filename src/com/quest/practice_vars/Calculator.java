@@ -16,7 +16,7 @@ public class Calculator
             System.out.println("1.Addition\n2.Suntraction \n3.Multiplication\n4.Division\n5.Squareroot\n6.Clear current result \n7.exit");
             System.out.println();
             System.out.println("Enter your choice: ");
-            int choice=0;
+            int choice;
 
             while (true)
             {
@@ -110,7 +110,7 @@ public class Calculator
     }
 
     private static double getRes(Scanner sc) {
-        double res = 0;
+        double res;
 
         // Input for starting number with validation
         while (true) {
