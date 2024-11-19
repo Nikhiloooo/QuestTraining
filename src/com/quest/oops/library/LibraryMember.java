@@ -5,11 +5,10 @@ public class LibraryMember {
     private String name;
     private String contactInfo;
     private String[] borrowedBooks;
-    private int borrowedCount;
     private int maxBooks;
 
     public LibraryMember() {
-        maxBooks = 5;
+        maxBooks = 10;
         borrowedBooks = new String[maxBooks];
     }
 
@@ -66,8 +65,5 @@ public class LibraryMember {
     }
 
 
-    public String[] getBorrowedBooks() {
-        return borrowedBooks;
-    }
 
 }

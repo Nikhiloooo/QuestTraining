@@ -5,12 +5,10 @@ public class Library {
     private LibraryMember[] members;
     private int bookCount = 0;
     private int memberCount = 0;
-    private int maxBooks;
-    private int maxMembers;
+    private int maxBooks=10;
+    private int maxMembers=10;
 
-    public Library(int maxBooks, int maxMembers) {
-        this.maxBooks = maxBooks;
-        this.maxMembers = maxMembers;
+    public Library() {
         books = new Book[maxBooks];
         members = new LibraryMember[maxMembers];
     }
@@ -25,7 +23,7 @@ public class Library {
         return false;
     }
 
-    // Add a new library member
+
     public boolean addMember(LibraryMember member) {
         if (memberCount < maxMembers) {
             members[memberCount] = member;
@@ -62,13 +60,14 @@ public class Library {
         if (book.isAvailable()) {
             if (member.borrowBook(isbn)) {
                 book.setAvailabilityStatus(false);
-                System.out.println("Book borrowed successfully.");
+                System.out.println(book+" Book borrowed successfully by "+member);
                 return true;
             } else {
                 System.out.println("Member cannot borrow more books.");
                 return false;
             }
-        } else {
+        }
+        else {
             System.out.println("Book is unavailable.");
             return false;
         }
@@ -90,7 +89,7 @@ public class Library {
 
         if (member.returnBook(isbn)) {
             book.setAvailabilityStatus(true);
-            System.out.println("Book returned successfully.");
+            System.out.println(book+" Book returned successfully by "+member);
             return true;
         } else {
             System.out.println("Book was not borrowed by this member.");
