@@ -16,5 +16,7 @@ public class MainMechine {
         car.display(); // Overridden method
         car.start(); // Interface method
         System.out.println(car);
+        car.updateDetails("Diesel", 20);
+        car.display();
 }}
 

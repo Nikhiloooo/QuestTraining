@@ -26,4 +26,12 @@ public class Car extends Mechine implements Vehicle {
     public String toString() {
         return super.toString() + ", FuelType=" + this.fuelType + ", Mileage=" + this.mileage + " km/l";
     }
+
+    public void updateDetails(final String newFuelType, final int newMileage) {
+        // Allowed: Using final parameters in calculations or assignments to non-final variables
+        System.out.println("Updating car details...");
+        this.fuelType = newFuelType; // Assigning final parameter to instance variable
+        this.mileage = newMileage;
+
+    }
 }
