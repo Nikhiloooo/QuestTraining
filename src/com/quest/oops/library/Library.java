@@ -1,12 +1,12 @@
 package com.quest.oops.library;
 
-public class Library {
+public class Library extends LibrarySystem{
     private Book[] books;
     private LibraryMember[] members;
     private int bookCount = 0;
     private int memberCount = 0;
-    private int maxBooks=10;
-    private int maxMembers=10;
+    private final int maxBooks=10;
+    private final int maxMembers=10;
 
     public Library() {
         books = new Book[maxBooks];
@@ -14,26 +14,34 @@ public class Library {
     }
 
 
+    @Override
     public boolean addBook(Book book) {
-        if (bookCount < maxBooks) {
-            books[bookCount] = book;
-            bookCount++;
-            return true;
+        for (int i = 0; i < bookCount; i++) {
+            if (bookCount < maxBooks  && !books[i].isAvailable()) {
+                books[bookCount] = book;
+                bookCount++;
+                return true;
+             }
         }
+        System.out.println("book aldready found");
         return false;
     }
 
 
+   @Override
     public boolean addMember(LibraryMember member) {
-        if (memberCount < maxMembers) {
-            members[memberCount] = member;
-            memberCount++;
-            return true;
-        }
+
+           if (memberCount < maxMembers ) {
+               members[memberCount] = member;
+               memberCount++;
+               return true;
+           }
+
         return false;
     }
 
 
+@Override
     public boolean searchBook(String isbn) {
         for (int i = 0; i < bookCount; i++) {
             if (books[i].getIsbn().equals(isbn)) {
@@ -44,80 +52,45 @@ public class Library {
     }
 
 
+
+    @Override
     public boolean borrowBook(String memberId, String isbn) {
-        LibraryMember member = findMember(memberId);
-        if (member == null) {
-            System.out.println("Member not found.");
-            return false;
-        }
-
-        Book book = findBook(isbn);
-        if (book == null) {
-            System.out.println("Book not found.");
-            return false;
-        }
-
-        if (book.isAvailable()) {
-            if (member.borrowBook(isbn)) {
-                book.setAvailabilityStatus(false);
-                System.out.println(book+" Book borrowed successfully by "+member);
-                return true;
-            } else {
-                System.out.println("Member cannot borrow more books.");
-                return false;
-            }
-        }
-        else {
-            System.out.println("Book is unavailable.");
-            return false;
-        }
-    }
-
-
-    public boolean returnBook(String memberId, String isbn) {
-        LibraryMember member = findMember(memberId);
-        if (member == null) {
-            System.out.println("Member not found.");
-            return false;
-        }
-
-        Book book = findBook(isbn);
-        if (book == null) {
-            System.out.println("Book not found.");
-            return false;
-        }
-
-        if (member.returnBook(isbn)) {
-            book.setAvailabilityStatus(true);
-            System.out.println(book+" Book returned successfully by "+member);
-            return true;
-        } else {
-            System.out.println("Book was not borrowed by this member.");
-            return false;
-        }
-    }
-
-
-    private LibraryMember findMember(String memberId) {
         for (int i = 0; i < memberCount; i++) {
             if (members[i].getMemberId().equals(memberId)) {
-                return members[i];
+                for (int j = 0; j < bookCount; j++) {
+                    if (books[j].getIsbn().equals(isbn) && books[j].isAvailable()) {
+                        books[j].setAvailabilityStatus(false);
+                        System.out.println("Book borrowed successfully by " + members[i].getName());
+                        return true;
+                    }
+                }
             }
         }
-        return null;
+        System.out.println("Book borrowing failed. Either the book is unavailable or member not found.");
+        return false;
     }
 
 
-    private Book findBook(String isbn) {
-        for (int i = 0; i < bookCount; i++) {
-            if (books[i].getIsbn().equals(isbn)) {
-                return books[i];
+    @Override
+    public boolean returnBook(String memberId, String isbn) {
+        for (int i = 0; i < memberCount; i++) {
+            if (members[i].getMemberId().equals(memberId)) {
+                for (int j = 0; j < bookCount; j++) {
+                    if (books[j].getIsbn().equals(isbn) && !books[j].isAvailable()) {
+                        books[j].setAvailabilityStatus(true);
+                        System.out.println("Book returned successfully by " + members[i].getName());
+                        return true;
+                    }
+                }
             }
         }
-        return null;
+        System.out.println("Book return failed. Either the book was not borrowed or the member is invalid.");
+        return false;
     }
 
 
+
+@Override
     public void displayAvailableBooks() {
         System.out.println("Available Books:");
         for (int i = 0; i < bookCount; i++) {
@@ -128,6 +101,9 @@ public class Library {
     }
 
 
+
+
+@Override
     public void displayAllMembers() {
         System.out.println("Library Members:");
         for (int i = 0; i < memberCount; i++) {

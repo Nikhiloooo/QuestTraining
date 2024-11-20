@@ -5,7 +5,9 @@ import java.util.Scanner;
 public class LibraryManagementSystem {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Library library = new Library();
+        LibrarySystem library = new Library();
+        String memberId;
+        String isbn;
 
         while (true) {
             System.out.println("\nLibrary Management System");
@@ -24,7 +26,7 @@ public class LibraryManagementSystem {
             switch (choice) {
                 case 1:
                     System.out.print("Enter ISBN: ");
-                    String isbn = scanner.nextLine();
+                     isbn = scanner.nextLine();
                     System.out.print("Enter Title: ");
                     String title = scanner.nextLine();
                     System.out.print("Enter Author: ");
@@ -36,18 +38,18 @@ public class LibraryManagementSystem {
                     newBook.setTitle(title);
                     newBook.setAuthor(author);
                     newBook.setPublicationYear(year);
-                    newBook.setAvailabilityStatus(true);
                     if (library.addBook(newBook)) {
                         System.out.println("Book added successfully!");
+                        newBook.setAvailabilityStatus(true);
                     } else {
-                        System.out.println("Library is full, can't add more books.");
+                        System.out.println("can't add more books.");
                     }
                     break;
 
 
                 case 2:
                     System.out.print("Enter Member ID: ");
-                     String memberId = scanner.nextLine();
+                     memberId = scanner.nextLine();
                     System.out.print("Enter Member Name: ");
                     String name = scanner.nextLine();
                     System.out.print("Enter Contact Info: ");
