@@ -34,7 +34,7 @@ public class Member implements LibraryOperations {
     public void borrowBook(Book book) {
         if (borrowedCount < MAX_BORROW_LIMIT) {
             borrowedBooks[borrowedCount++] = book;
-            System.out.println(name + " borrowed: " + book);
+            System.out.println(getName() + " borrowed: " + book);
         } else {
             System.out.println(name + " has reached the borrowing limit!");
         }
@@ -45,7 +45,7 @@ public class Member implements LibraryOperations {
         for (int i = 0; i < borrowedCount; i++) {
             if (borrowedBooks[i].getTitle().equalsIgnoreCase(bookTitle)) {
                 System.out.println(name + " returned: " + borrowedBooks[i]);
-                borrowedBooks[i] = borrowedBooks[--borrowedCount]; // Shift last book to the returned slot
+                borrowedBooks[i] = borrowedBooks[--borrowedCount];
                 borrowedBooks[borrowedCount] = null;
                 return;
             }
@@ -55,7 +55,7 @@ public class Member implements LibraryOperations {
 
 
     public double calculateLateFees(final int daysLate) {
-        return daysLate * 2.0;
+        return daysLate * 10.0;
     }
 
     public String toString() {
