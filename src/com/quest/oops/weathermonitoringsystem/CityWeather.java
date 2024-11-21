@@ -14,6 +14,7 @@ public class CityWeather {
     }
 
     public String getName() {
+
         return name;
     }
 

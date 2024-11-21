@@ -8,7 +8,7 @@ public class WeatherMonitoringSystem {
         while (true) {
             System.out.println("\n--- Weather Monitoring System ---");
             System.out.println("1. Add CityWeather");
-            System.out.println("2. Update Cityweather");
+            System.out.println("2. Update City weather");
             System.out.println("3. Display All Cities");
             System.out.println("4. Display City by Name");
             System.out.println("5. Display Extremes");

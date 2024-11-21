@@ -1,22 +1,23 @@
 package com.quest.oops.weathermonitoringsystem;
 
-public abstract class WeatherOperations {
+public interface WeatherOperations {
 
-    protected CityWeather[] cities;
-    protected int cityCount;
+    void addCity(String name, double currentTemprature, int humidity, String condition);
 
-    public WeatherOperations(int maxCities) {
-        cities = new CityWeather[maxCities];
-        cityCount = 0;
-    }
+    void updateCity(String name, double currentTemperature, int humidity, String condition);
 
-    public abstract void addCity(String name,double currentTemprature,int humidity,String condition);
-    public abstract void updateCity(String name, double currentTemperature, int humidity, String condition);
-    public abstract void displayAllCities();
-    public abstract void displayCity(String name);
-    public abstract void displayExtremes();
-    public abstract void displayHighHumidityCities();
-    public abstract void displayAlerts();
-    public  abstract void displayCitiesByCondition();public abstract void displayAverageTemperature();
+    void displayAllCities();
+
+    void displayCity(String name);
+
+    void displayExtremes();
+
+    void displayHighHumidityCities();
+
+    void displayAlerts();
+
+    void displayCitiesByCondition();
+
+    void displayAverageTemperature();
 
 }

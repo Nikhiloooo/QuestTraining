@@ -1,10 +1,17 @@
 package com.quest.oops.weathermonitoringsystem;
 
-public class CityWeatherData extends WeatherOperations{
+public class CityWeatherData implements WeatherOperations{
+
+    protected CityWeather[] cities;
+    protected int cityCount;
 
     public CityWeatherData(int maxCities) {
-        super(maxCities);
+        cities = new CityWeather[maxCities];
+        cityCount = 0;
     }
+
+
+    //method to add the city weather details
     @Override
     public void addCity(String name, double currentTemperature, int humidity, String condition) {
         if (cityCount < cities.length) {
@@ -15,6 +22,7 @@ public class CityWeatherData extends WeatherOperations{
     }
 
 
+//method for update details of a particular city
     @Override
     public void updateCity(String name, double currentTemperature, int humidity, String condition) {
         for (int i = 0; i < cityCount; i++) {
@@ -29,7 +37,7 @@ public class CityWeatherData extends WeatherOperations{
         System.out.println("City not found!");
     }
 
-
+//methods to display all the city with details
     @Override
     public void displayAllCities() {
         System.out.println("Displaying All Cities:");
@@ -39,6 +47,7 @@ public class CityWeatherData extends WeatherOperations{
         }
     }
 
+    //method to display details of a particular city by name
     @Override
     public void displayCity(String name) {
         for (int i = 0; i < cityCount; i++) {
@@ -51,7 +60,7 @@ public class CityWeatherData extends WeatherOperations{
     }
 
 
-
+//method to display the highest and lowest temprature city name
     @Override
     public void displayExtremes() {
         if (cityCount == 0) {
@@ -74,6 +83,7 @@ public class CityWeatherData extends WeatherOperations{
     }
 
 
+    //method to get the city which has humidity greater than 80
     @Override
     public void displayHighHumidityCities() {
         boolean found = false;
@@ -89,6 +99,8 @@ public class CityWeatherData extends WeatherOperations{
         }
     }
 
+
+    //method to group the city based on weather condition
 @Override
     public void displayCitiesByCondition() {
     System.out.println("Cities Grouped by Weather Condition:");
@@ -110,6 +122,8 @@ public class CityWeatherData extends WeatherOperations{
 
 }
 
+//method to display average temprature
+@Override
         public void displayAverageTemperature() {
             if (cityCount == 0) {
                 System.out.println("No cities to calculate average temperature.");
@@ -126,6 +140,7 @@ public class CityWeatherData extends WeatherOperations{
         }
 
 
+        //method to display alert when temprature grater or when humidity is less
     @Override
     public void displayAlerts() {
         for (int i = 0; i < cityCount; i++) {
