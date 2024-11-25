@@ -44,7 +44,7 @@ public class Member implements LibraryOperations {
     public void returnBook(String bookTitle) {
         for (int i = 0; i < borrowedCount; i++) {
             if (borrowedBooks[i].getTitle().equalsIgnoreCase(bookTitle)) {
-                System.out.println(name + " returned: " + borrowedBooks[i]);
+                System.out.println(name + " returned: " + borrowedBooks[i].getTitle());
                 borrowedBooks[i] = borrowedBooks[--borrowedCount];
                 borrowedBooks[borrowedCount] = null;
                 return;
