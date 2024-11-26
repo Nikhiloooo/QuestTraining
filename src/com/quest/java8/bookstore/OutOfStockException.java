@@ -1,7 +1,7 @@
-package com.quest.bookstore;
+package com.quest.java8.bookstore;
 
 public class OutOfStockException extends Exception {
-private String message;
+
     public OutOfStockException(String message) {
         super(message);
     }

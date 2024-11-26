@@ -1,4 +1,4 @@
-package com.quest.bookstore;
+package com.quest.java8.bookstore;
 
 @FunctionalInterface
 interface BookFilter {

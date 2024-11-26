@@ -1,4 +1,4 @@
-package com.quest.bookstore;
+package com.quest.java8.bookstore;
 
 public class BookstoreInventoryManagement {
     private static final double DISCOUNT_PERCENTAGE = 25.0;
@@ -40,8 +40,16 @@ public class BookstoreInventoryManagement {
             }
         }
 
+
         System.out.println("\nDiscount Percentage: " + DISCOUNT_PERCENTAGE + "%");
+
+
+
+
+
+
     }
+
 }
 
 
