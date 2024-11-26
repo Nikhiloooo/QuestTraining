@@ -31,23 +31,27 @@ public class ManageEmployee {
 
         while (manager == null) {
             try {
-                System.out.println("Enter manager name: ");
-                String name = sc.nextLine();
-                System.out.print("Enter manager age: ");
-                int age = sc.nextInt();
-                System.out.print("Enter manager salary: ");
-                double salary = sc.nextDouble();
-                System.out.print("Enter team size: ");
-                int teamSize = sc.nextInt();
-                sc.nextLine();
-                manager = new Manager(name, age, salary, teamSize);
+                System.out.println("Enter Manager details:");
+                System.out.print("Name: ");
+                String mgrName = sc.nextLine();
+                System.out.print("Age: ");
+                int mgrAge = sc.nextInt();
+                System.out.print("Salary: ");
+                double mgrSalary = sc.nextDouble();
+                System.out.print("Team Size: ");
+                int mgrTeamSize = sc.nextInt();
+                sc.nextLine(); // Consume newline
+
+                manager = new Manager(mgrName, mgrAge, mgrSalary, mgrTeamSize);
             } catch (InputMismatchException e) {
                 System.out.println("InputMismatchException: Please enter the correct data type.");
-                sc.nextLine(); // Clear the scanner buffer
+                sc.nextLine(); // Clear invalid input
             } catch (InvalidInputException e) {
                 System.out.println("InvalidInputException: " + e.getMessage() + " Please re-enter details.");
             } catch (IllegalArgumentException e) {
                 System.out.println("IllegalArgumentException: " + e.getMessage() + " Please re-enter details.");
+            } catch (Exception e) {
+                System.out.println("Error: " + e.getMessage() + " Please re-enter details.");
             }
         }
 
