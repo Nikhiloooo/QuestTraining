@@ -18,10 +18,10 @@ public class PriorityQueueClass {
         pq.add(7);
         pq.add(9);
 
-//        Iterator<Integer> itr=pq.iterator();
-//        while(itr.hasNext()){
-//            System.out.println(itr.next());
-//        }
+        Iterator<Integer> itr=pq.iterator();
+        while(itr.hasNext()){
+            System.out.println(itr.next());
+        }
 
         PriorityQueue<String> pq1=new PriorityQueue<>();
         //its Following FIFO
@@ -40,6 +40,11 @@ public class PriorityQueueClass {
         System.out.println("offer      "+pq1.offer("nikhil"));
         System.out.println("peek       "+pq1.peek());
         System.out.println("element    "+pq1.element());
+        System.out.println("pq1.poll() "+pq1.poll());
+        System.out.println("pq1.poll() "+pq1.poll());
+        System.out.println("pq1.poll() "+pq1.poll());
+        System.out.println("pq1.poll() "+pq1.poll());
+        System.out.println("pq1.poll() "+pq1.poll());
         System.out.println("pq1.poll() "+pq1.poll());
         System.out.println("remove     "+pq1.remove());
         System.out.println();

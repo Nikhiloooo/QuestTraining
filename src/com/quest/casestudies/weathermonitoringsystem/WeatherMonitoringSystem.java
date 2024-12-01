@@ -1,4 +1,4 @@
-package com.quest.oops.weathermonitoringsystem;
+package com.quest.casestudies.weathermonitoringsystem;
 import java.util.Scanner;
 public class WeatherMonitoringSystem {
     public static void main(String[] args) {

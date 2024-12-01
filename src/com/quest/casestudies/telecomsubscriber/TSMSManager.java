@@ -1,7 +1,6 @@
-package com.quest.casestudies;
+package com.quest.casestudies.telecomsubscriber;
 
 import java.io.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class TSMSManager implements Operations {

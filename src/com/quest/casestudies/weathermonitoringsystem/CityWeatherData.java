@@ -1,4 +1,4 @@
-package com.quest.oops.weathermonitoringsystem;
+package com.quest.casestudies.weathermonitoringsystem;
 
 public class CityWeatherData implements WeatherOperations{
 

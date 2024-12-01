@@ -1,4 +1,4 @@
-package com.quest.casestudies;
+package com.quest.casestudies.telecomsubscriber;
 
 import java.io.Serializable;
 
@@ -13,9 +13,11 @@ public class Subscriber implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
+
     public String getId() {
         return id;
     }
+
 
     public String getName() {
         return name;

@@ -1,4 +1,4 @@
-package com.quest.casestudies;
+package com.quest.casestudies.telecomsubscriber;
 
 public interface Operations {
     void addSubscriber(Subscriber sub);

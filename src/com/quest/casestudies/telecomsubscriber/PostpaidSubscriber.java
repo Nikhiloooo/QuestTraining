@@ -1,4 +1,4 @@
-package com.quest.casestudies;
+package com.quest.casestudies.telecomsubscriber;
 
 public class PostpaidSubscriber extends Subscriber {
 
