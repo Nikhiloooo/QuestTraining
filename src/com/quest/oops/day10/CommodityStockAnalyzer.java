@@ -1,12 +1,12 @@
-package com.quest.oops.abstraction;
+package com.quest.oops.day10;
 
-public class EquityStockAnalyzer extends StockAnalyzer {
-    String sector;
+public class CommodityStockAnalyzer extends StockAnalyzer {
+    String commodityType;
 
-    public EquityStockAnalyzer(String stockName, String stockSymbol, int[] prices, String sector) {
+    public CommodityStockAnalyzer(String stockName, String stockSymbol, int[] prices, String commodityType) {
         super(stockName, stockSymbol, prices);
-        this.sector = sector;
-}
+        this.commodityType = commodityType;
+    }
 
     @Override
     public int findMaxPrice() {
@@ -53,19 +53,19 @@ public class EquityStockAnalyzer extends StockAnalyzer {
                     end = i;
                 }
             } else {
-                currentLength = 1; // Reset length
-                tempStart = i;     // Update temporary start
+                currentLength = 1;
+                tempStart = i;
             }
         }
-        return new int[]{start + 1, end + 1, maxLength}; // Days are 1-indexed
+        return new int[]{start + 1, end + 1, maxLength};
     }
 
     @Override
     public void displayAnalysis() {
-        System.out.println("Analysis for Equity Stock:");
+        System.out.println("Analysis for Commodity Stock:");
         System.out.println("Stock Name: " + stockName);
         System.out.println("Stock Symbol: " + stockSymbol);
-        System.out.println("Sector: " + sector);
+        System.out.println("Commodity Type: " + commodityType);
         System.out.println("Highest Price: " + findMaxPrice());
         System.out.println("Lowest Price: " + findMinPrice());
         System.out.println("Average Price: " + calculateAveragePrice());
@@ -73,4 +73,3 @@ public class EquityStockAnalyzer extends StockAnalyzer {
         System.out.println("Longest Increasing Trend: Start Day " + trend[0] + ", End Day " + trend[1] + ", Length: " + trend[2] + " days\n");
     }
 }
-

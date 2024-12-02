@@ -1,4 +1,4 @@
-package com.quest.oops.abstraction;
+package com.quest.oops.day10;
 
 public abstract class StockAnalyzer {
      String stockName;

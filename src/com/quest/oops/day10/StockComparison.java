@@ -1,4 +1,5 @@
-package com.quest.oops.abstraction;
+package com.quest.oops.day10;
+
 import java.util.Scanner;
 public class StockComparison {
 
