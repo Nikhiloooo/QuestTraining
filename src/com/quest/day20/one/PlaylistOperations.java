@@ -1,4 +1,4 @@
-package com.quest.day20;
+package com.quest.day20.one;
 
 import java.util.List;
 

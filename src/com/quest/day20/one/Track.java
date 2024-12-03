@@ -1,4 +1,6 @@
-package com.quest.day20;
+package com.quest.day20.one;
+
+import java.util.Objects;
 
 public class Track {
     private final String id;
@@ -53,15 +55,18 @@ public class Track {
         this.rating = rating;
     }
 
+
     @Override
-    public boolean equals(Object obj) {
-        Track track = (Track) obj;
-        return  this.hashCode() == track.hashCode();
+    public boolean equals(Object o)
+    {
+
+        Track track = (Track) o;
+        return id == track.id;
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return Objects.hashCode(id);
     }
 
 

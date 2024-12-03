@@ -1,4 +1,4 @@
-package com.quest.day20;
+package com.quest.day20.one;
 
 public interface UserOperations {
     void createPlaylist(String name);

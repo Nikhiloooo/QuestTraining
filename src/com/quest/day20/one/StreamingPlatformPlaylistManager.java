@@ -1,4 +1,4 @@
-package com.quest.day20;
+package com.quest.day20.one;
 
 import java.util.Scanner;
 
@@ -73,7 +73,7 @@ public class StreamingPlatformPlaylistManager {
 
                         System.out.print("Enter track ID to remove: ");
                         trackId = scanner.nextLine();
-                        track = new Track(trackId, "", "", 0, 0);
+                        track = new Track(trackId, "", "", 0, 0); // Empty track for removal
                         playlist.removeTrack(track);
                         System.out.println("Track removed successfully.");
                         break;
@@ -85,13 +85,13 @@ public class StreamingPlatformPlaylistManager {
                         playlist.displayTracks();
                         break;
 
-                    case 6: // Search Tracks
-                        System.out.print("Enter keyword to search for tracks: ");
-                        String keyword = scanner.nextLine();
-                        for (Playlist p : user.getPlaylists()) {
-                            p.search(keyword).forEach(System.out::println);
-                        }
-                        break;
+//                    case 6: // Search Tracks
+//                        System.out.print("Enter keyword to search for tracks: ");
+//                        String keyword = scanner.nextLine();
+//                        for (Playlist p : user.getPlaylists().values()) {
+//                            p.search(keyword).forEach(System.out::println);
+//                        }
+//                        break;
 
                     case 7: // Sort Tracks by Duration
                         System.out.print("Enter playlist name to sort by duration: ");
@@ -128,20 +128,20 @@ public class StreamingPlatformPlaylistManager {
                         System.out.println("Playlists merged.");
                         break;
 
-                    case 11: // Mark/Unmark Favorite Track
-                        System.out.print("Enter track ID to mark/unmark as favorite: ");
-                        trackId = scanner.nextLine();
-                        track = new Track(trackId, "", "", 0, 0);
-                        if (user.getFavoriteTracks().contains(track)) {
-                            user.removeTrackFromFavorites(track);
-                            System.out.println("Track unmarked as favorite.");
-                        } else {
-                            user.addTrackToFavorites(track);
-                            System.out.println("Track marked as favorite.");
-                        }
-                        break;
+//                    case 11: // Mark/Unmark Favorite Track
+//                        System.out.print("Enter track ID to mark/unmark as favorite: ");
+//                        trackId = scanner.nextLine();
+//                        track = new Track(trackId, "", "", 0, 0);
+//                        if (user.getFavoriteTracks().contains(track)) {
+//                            user.removeTrackFromFavorites(track);
+//                            System.out.println("Track unmarked as favorite.");
+//                        } else {
+//                            user.addTrackToFavorites(track);
+//                            System.out.println("Track marked as favorite.");
+//                        }
+//                        break;
 
-                    case 12:
+                    case 12: // Display Favorites
                         user.displayAllFavorites();
                         break;
 
