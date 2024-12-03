@@ -1,94 +1,115 @@
 package com.quest.day20.one;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
 
 public class User implements UserOperations {
     private String username;
-    private Map<String, Playlist> playlists;
-    private Set<Track> favoriteTracks;
+    private List<Playlist> playlists;
+    private List<Track> favoriteTracks;
 
-    User(String username) {
+    public User(String username) {
         this.username = username;
-        playlists = new HashMap<>();
-        favoriteTracks = new HashSet<>();
+        this.playlists = new ArrayList<>();
+        this.favoriteTracks = new ArrayList<>();
     }
 
+    // Implementing the UserOperations interface methods
     @Override
     public void createPlaylist(String name) {
-        if (playlists.containsKey(name)) {
-            throw new IllegalArgumentException("Playlist already exists");
+        for (Playlist playlist : playlists) {
+            if (playlist.getName().equals(name)) {
+                throw new IllegalArgumentException("Playlist with the name " + name + " already exists.");
+            }
         }
-        playlists.put(name, new Playlist(name));
+        playlists.add(new Playlist(name));
     }
 
     @Override
     public void deletePlaylist(String name) {
-        if (playlists.containsKey(name)) {
-            playlists.remove(name);
+        Playlist playlistToDelete = null;
+        for (Playlist playlist : playlists) {
+            if (playlist.getName().equals(name)) {
+                playlistToDelete = playlist;
+                break;
+            }
+        }
+        if (playlistToDelete != null) {
+            playlists.remove(playlistToDelete);
         } else {
-            throw new NoSuchElementException("Playlist does not exist");
+            throw new NoSuchElementException("Playlist with name " + name + " not found.");
         }
     }
 
     @Override
     public Playlist getPlaylist(String name) {
-        Playlist playlist = playlists.get(name);
-        if (playlist == null) {
-            throw new NoSuchElementException("Playlist not found.");
+        for (Playlist playlist : playlists) {
+            if (playlist.getName().equals(name)) {
+                return playlist;
+            }
         }
-        return playlist;
+        throw new NoSuchElementException("Playlist with name " + name + " not found.");
     }
 
     @Override
     public void displayAllPlaylists() {
-        for (Map.Entry<String, Playlist> entry : playlists.entrySet()) {
-            System.out.println("Playlist: " + entry.getKey());
-            entry.getValue().displayTracks();
+        if (playlists.isEmpty()) {
+            System.out.println("No playlists available.");
+        } else {
+            System.out.println("Playlists of " + username + ":");
+            for (Playlist playlist : playlists) {
+                System.out.println("- " + playlist.getName());
+            }
         }
     }
 
     @Override
     public void mergePlaylists(String playlist1, String playlist2, String newPlaylistName) {
-        Playlist p1 = playlists.get(playlist1);
-        Playlist p2 = playlists.get(playlist2);
+        Playlist p1 = getPlaylist(playlist1);
+        Playlist p2 = getPlaylist(playlist2);
+        Playlist newPlaylist = new Playlist(newPlaylistName);
 
-        if (p1 != null && p2 != null) {
-            Playlist mergedPlaylist = new Playlist(newPlaylistName);
+        newPlaylist.getTracks().addAll(p1.getTracks());
+        newPlaylist.getTracks().addAll(p2.getTracks());
 
-            for (Track track : p1.getTracks()) {
-                try {
-                    mergedPlaylist.addTrack(track);
-                } catch (DuplicateTrackException e) {
-
-                }
-            }
-            for (Track track : p2.getTracks()) {
-                try {
-                    mergedPlaylist.addTrack(track);
-                } catch (DuplicateTrackException e) {
-
-                }
-            }
-            playlists.put(newPlaylistName, mergedPlaylist);
-        } else {
-            throw new NoSuchElementException("One or both playlists do not exist");
-        }
+        playlists.add(newPlaylist);
+        System.out.println("Playlists merged successfully into: " + newPlaylistName);
     }
 
     @Override
     public void addTrackToFavorites(Track track) {
-        favoriteTracks.add(track);
+        if (!favoriteTracks.contains(track)) {
+            favoriteTracks.add(track);
+            System.out.println("Track added to favorites.");
+        } else {
+            System.out.println("Track is already in favorites.");
+        }
     }
 
     @Override
     public void removeTrackFromFavorites(Track track) {
-        favoriteTracks.remove(track);
+        if (favoriteTracks.contains(track)) {
+            favoriteTracks.remove(track);
+            System.out.println("Track removed from favorites.");
+        } else {
+            System.out.println("Track not found in favorites.");
+        }
     }
 
     @Override
     public void displayAllFavorites() {
-        for (Track track : favoriteTracks) {
-            System.out.println(track);
+        if (favoriteTracks.isEmpty()) {
+            System.out.println("No favorite tracks.");
+        } else {
+            System.out.println("Favorite tracks:");
+            for (Track track : favoriteTracks) {
+                System.out.println("- " + track.getTitle() + " by " + track.getArtist());
+            }
         }
+    }
+
+    public String getUsername() {
+        return username;
     }
 }

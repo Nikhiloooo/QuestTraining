@@ -4,12 +4,12 @@ import java.util.List;
 
 public interface PlaylistOperations {
     void addTrack(Track track) throws DuplicateTrackException;
-    void removeTrack(Track track);
+    void removeTrack(String title);
     List<Track> findDuplicates();
     List<Track> search(String keyword);
     void displayTracks();
     void sortTracksByDuration();
     void sortTracksByTitle();
     void shuffleTracks();
-     List<Track> getTracks();
+    List<Track> getTracks();
 }

@@ -5,7 +5,7 @@ import java.util.*;
 public class TopKFrequent {
     public static void main(String[] args) {
         List<String> input = new ArrayList<>(Arrays.asList("apple", "banana", "apple", "cherry", "banana", "banana"));
-        int k = 2;
+        int k = 1;
 
         List<String> result = findTopKFrequent(input, k);
         System.out.println(result);
