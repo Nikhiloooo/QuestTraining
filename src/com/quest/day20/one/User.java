@@ -1,8 +1,6 @@
 package com.quest.day20.one;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class User implements UserOperations {
     private String username;
@@ -13,6 +11,12 @@ public class User implements UserOperations {
         this.username = username;
         this.playlists = new ArrayList<>();
         this.favoriteTracks = new ArrayList<>();
+    }
+    public String getUsername() {
+        return username;
+    }
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     // Implementing the UserOperations interface methods
@@ -59,7 +63,7 @@ public class User implements UserOperations {
         } else {
             System.out.println("Playlists of " + username + ":");
             for (Playlist playlist : playlists) {
-                System.out.println("- " + playlist.getName());
+                System.out.println(playlist);
             }
         }
     }
@@ -70,9 +74,11 @@ public class User implements UserOperations {
         Playlist p2 = getPlaylist(playlist2);
         Playlist newPlaylist = new Playlist(newPlaylistName);
 
-        newPlaylist.getTracks().addAll(p1.getTracks());
-        newPlaylist.getTracks().addAll(p2.getTracks());
+        Set<Track> uniqueTracks = new HashSet<>();
+        uniqueTracks.addAll(p1.getTracks());
+        uniqueTracks.addAll(p2.getTracks());
 
+        newPlaylist.getTracks().addAll(uniqueTracks);
         playlists.add(newPlaylist);
         System.out.println("Playlists merged successfully into: " + newPlaylistName);
     }
@@ -109,7 +115,5 @@ public class User implements UserOperations {
         }
     }
 
-    public String getUsername() {
-        return username;
-    }
+
 }

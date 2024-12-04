@@ -30,6 +30,7 @@ public class StreamingPlatformPlaylistManager {
             System.out.println("18. Exit");
             System.out.println("19. Merge Playlists");
             System.out.println("20. Find Duplicates in Playlist");
+            System.out.println("21. Display Tracks Sorted by Rating");
             System.out.print("\nEnter your choice: ");
 
             try {
@@ -123,6 +124,7 @@ public class StreamingPlatformPlaylistManager {
                                         break;
                                     }
                                 }
+
                             } catch (NoSuchElementException e) {
                                 System.out.println("Playlist or track not found.");
                             } catch (Exception e) {
@@ -225,7 +227,7 @@ public class StreamingPlatformPlaylistManager {
                             } else {
                                 System.out.print("Enter playlist name: ");
                                 String playlistName = sc.nextLine();
-                                Playlist playlist = currentUser.getPlaylist(playlistName); // Get playlist by name
+                                Playlist playlist = currentUser.getPlaylist(playlistName);
 
                                 if (playlist != null) {
                                     System.out.print("Enter keyword to search (title/artist): ");
@@ -265,7 +267,7 @@ public class StreamingPlatformPlaylistManager {
                                 String playlistName = sc.nextLine();
                                 Playlist playlist = currentUser.getPlaylist(playlistName);
                                 playlist.sortTracksByDuration();
-                                System.out.println("Tracks sorted by duration.");
+
                             }
                             break;
 
@@ -277,7 +279,7 @@ public class StreamingPlatformPlaylistManager {
                                 String playlistName = sc.nextLine();
                                 Playlist playlist = currentUser.getPlaylist(playlistName);
                                 playlist.sortTracksByTitle();
-                                System.out.println("Tracks sorted by title.");
+
                             }
                             break;
 
@@ -308,6 +310,7 @@ public class StreamingPlatformPlaylistManager {
                                 System.out.println(e.getMessage());
                             }
                             break;
+
                         case 20:
                             // Find duplicates in a playlist
                             System.out.print("Enter playlist name to find duplicates: ");
@@ -328,6 +331,18 @@ public class StreamingPlatformPlaylistManager {
                             }
                             break;
 
+                    case 21://sort by rating
+                        if (currentUser == null) {
+                            System.out.println("No user selected. Please create or select a user first.");
+                        } else {
+                            System.out.print("Enter playlist name: ");
+                            String playlistName = sc.nextLine();
+                            Playlist playlist = currentUser.getPlaylist(playlistName);
+                            playlist.displayTracksSortedByRating();
+                        }
+                        break;
+
+
                     case 17: // Switch user
                         currentUser = null;
                         System.out.println("Switched user.");
@@ -344,6 +359,7 @@ public class StreamingPlatformPlaylistManager {
             } catch (NumberFormatException e) {
                 System.out.println("Invalid input. Please enter a number.");
             }
+
         }
     }
 }

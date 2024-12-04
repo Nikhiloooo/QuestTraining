@@ -9,7 +9,6 @@ public class Track {
     private double duration; // in minutes
     private int rating; // Rating from 1 to 5
 
-    // Constructor
     public Track(String id, String title, String artist, double duration, int rating) {
         this.id = id;
         this.title = title;
@@ -18,7 +17,7 @@ public class Track {
         this.rating = rating;
     }
 
-    // Getters and Setters
+
     public String getId() {
         return id;
     }
@@ -50,7 +49,6 @@ public class Track {
         if (o == null || getClass() != o.getClass()) return false;
         Track track = (Track) o;
         return id == track.id;
-//        && duration == track.duration && Objects.equals(title, track.title) && Objects.equals(artist, track.artist)
     }
 
     @Override

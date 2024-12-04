@@ -2,6 +2,7 @@ package com.quest.day20.one;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Playlist implements PlaylistOperations {
@@ -13,7 +14,7 @@ public class Playlist implements PlaylistOperations {
         this.tracks = new ArrayList<>();
     }
 
-    // Getters and Setters
+
     public String getName() {
         return name;
     }
@@ -22,16 +23,23 @@ public class Playlist implements PlaylistOperations {
         return tracks;
     }
 
+    @Override
+    public String toString() {
+        return "Playlist{" +
+                "name='" + name + '\'' +
+                ", tracks=" + tracks +
+                '}';
+    }
+
     // Implementing the PlaylistOperations interface methods
     @Override
-    public void addTrack(Track track) throws DuplicateTrackException {
-        for (Track t : tracks) {
-            if (t.getId().equals(track.getId())) {
-                throw new DuplicateTrackException("Track with ID " + track.getId() + " already exists in the playlist.");
-            }
-        }
-        tracks.add(track);
+    public void addTrack(Track track) throws DuplicateTrackException    {
+        if(tracks.contains(track))
+            throw new DuplicateTrackException("Exception! Track already exists...");
+        else
+            tracks.add(track);
     }
+
 
     @Override
     public void removeTrack(String id) {
@@ -55,7 +63,7 @@ public class Playlist implements PlaylistOperations {
         List<Track> duplicates = new ArrayList<>();
         for (int i = 0; i < tracks.size(); i++) {
             for (int j = i + 1; j < tracks.size(); j++) {
-                if (tracks.get(i).getId().equals(tracks.get(j).getId())) {
+                if (tracks.get(i).getId().equals(tracks.get(j).getId())||tracks.get(i).getTitle().equalsIgnoreCase(tracks.get(j).getTitle())) {
                     duplicates.add(tracks.get(i));
                 }
             }
@@ -67,8 +75,7 @@ public class Playlist implements PlaylistOperations {
     public List<Track> search(String keyword) {
         List<Track> result = new ArrayList<>();
         for (Track track : tracks) {
-            if (track.getTitle().toLowerCase().contains(keyword.toLowerCase()) ||
-                    track.getArtist().toLowerCase().contains(keyword.toLowerCase())) {
+            if(track.getTitle().equalsIgnoreCase(keyword) || track.getArtist().equalsIgnoreCase(keyword)) {
                 result.add(track);
             }
         }
@@ -80,28 +87,46 @@ public class Playlist implements PlaylistOperations {
         if (tracks.isEmpty()) {
             System.out.println("No tracks available in this playlist.");
         } else {
-            System.out.println("Tracks in " + name + " playlist:");
+            System.out.println("Tracks in " + name + "'s  playlist:");
             for (Track track : tracks) {
-                System.out.println("- " + track.getTitle() + " by " + track.getArtist() + " (" + track.getDuration() + " mins)");
+                System.out.println(track);
             }
         }
     }
 
     @Override
     public void sortTracksByDuration() {
-        Collections.sort(tracks, new TrackDurationComparator());
+        tracks.sort(new TrackDurationComparator());
         System.out.println("Tracks sorted by duration.");
+        System.out.println(tracks);
     }
 
     @Override
     public void sortTracksByTitle() {
-        Collections.sort(tracks, new TrackTitleComparator());
+        tracks.sort(new TrackTitleComparator());
         System.out.println("Tracks sorted by title.");
+        System.out.println(tracks);
     }
 
     @Override
     public void shuffleTracks() {
         Collections.shuffle(tracks);
         System.out.println("Tracks shuffled.");
+    }
+
+
+@Override
+    public void displayTracksSortedByRating() {
+        tracks.sort( new Comparator<Track>() {
+            @Override
+            public int compare(Track t1, Track t2) {
+                return t2.getRating() - t1.getRating();
+            }
+        });
+
+        System.out.println("Tracks sorted by rating (highest to lowest):");
+        for (Track track : tracks) {
+            System.out.println(track);
+        }
     }
 }

@@ -12,4 +12,5 @@ public interface PlaylistOperations {
     void sortTracksByTitle();
     void shuffleTracks();
     List<Track> getTracks();
+     void displayTracksSortedByRating();
 }
