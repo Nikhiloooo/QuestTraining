@@ -1,6 +1,6 @@
 package com.quest.oops.multipleinheritance;
 
-public class NewClass implements InterfaceA,InterfaceB {
+public class NewClass implements InterfaceA, InterfaceB {
 
 
     @Override
