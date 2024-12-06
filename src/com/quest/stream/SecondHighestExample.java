@@ -7,7 +7,7 @@ public class SecondHighestExample {
     public static void main(String[] args) {
 
 
-        Stream<Integer>intStream = Stream.of(1,6,7,3,2,8,9,10);
+        Stream<Integer> intStream = Stream.of(1,6,7,3,2,8,9,10);
         Optional<Integer> secondHighest = intStream
                 .sorted(Comparator.reverseOrder())
                 .distinct()

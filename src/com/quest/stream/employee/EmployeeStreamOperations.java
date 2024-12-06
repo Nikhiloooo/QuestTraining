@@ -1,6 +1,7 @@
 package com.quest.stream.employee;
 
 import java.util.*;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class EmployeeStreamOperations {
@@ -13,10 +14,12 @@ public class EmployeeStreamOperations {
                 new Employee(5, "Eve", 25, "IT", 45000, 2));
 
 
+
         List<Employee> sortedBySalary = employees.stream()
                 .sorted((emp1, emp2) -> Double.compare(emp1.getSalary(), emp2.getSalary()))
                 .collect(Collectors.toList());
         System.out.println("Sorted by salary: " + sortedBySalary);
+
 
         // Filtering by department
         List<Employee> itDepartmentEmployees = employees.stream()
@@ -24,10 +27,14 @@ public class EmployeeStreamOperations {
                 .collect(Collectors.toList());
         System.out.println("IT Department Employees: " + itDepartmentEmployees);
 
+
+
         // Finding the employee with the maximum salary
         Optional<Employee> maxSalaryEmployee = employees.stream()
                 .max((emp1, emp2) -> Double.compare(emp1.getSalary(), emp2.getSalary()));
         maxSalaryEmployee.ifPresent(emp -> System.out.println("Max salary employee: " + emp));
+
+
 
         // Skipping the first 2 employees for pagination
         List<Employee> paginatedEmployees = employees.stream()
@@ -36,20 +43,35 @@ public class EmployeeStreamOperations {
                 .collect(Collectors.toList());
         System.out.println("Paginated Employees: " + paginatedEmployees);
 
+
+
+        // Iterating over employees and printing their details
+        employees.stream()
+                .forEach(new Consumer<Employee>() {
+                    @Override
+                    public void accept(Employee emp) {
+                        System.out.println(emp.getName() + " works in " + emp.getDepartment());
+                    }
+                });
+
+
         // Collecting employees into a map by department
         Map<String, List<Employee>> employeesByDepartment = employees.stream()
-                .collect(Collectors.groupingBy(Employee::getDepartment));
+                .collect(Collectors.groupingBy(emp -> emp.getDepartment()));
         System.out.println("Employees by Department: " + employeesByDepartment);
+
 
         // Reducing to compute total salary
         double totalSalary = employees.stream()
-                .map(Employee::getSalary)
+                .map(emp -> emp.getSalary())
                 .reduce(0.0, (sum, salary) -> sum + salary);
         System.out.println("Total salary: " + totalSalary);
 
+
+
         // Reducing to compute average salary
         double averageSalary = employees.stream()
-                .mapToDouble(Employee::getSalary)
+                .mapToDouble(emp -> emp.getSalary())
                 .average()
                 .orElse(0.0);
         System.out.println("Average salary: " + averageSalary);

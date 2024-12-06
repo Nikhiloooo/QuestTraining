@@ -27,10 +27,10 @@ public class Test {
 
 
         List<Integer> list2=list.stream().filter(i ->i%2==0).toList();
-        System.out.println(list2);
+        System.out.println("list 1 "+list2);
 
         List<Integer> list3=list.stream().map(i ->i*2).toList();
-        System.out.println(list3);
+        System.out.println("list 3 "+list3);
 
 
         Integer list4=list.stream().map(i ->i*2).reduce(0, Integer::sum);
