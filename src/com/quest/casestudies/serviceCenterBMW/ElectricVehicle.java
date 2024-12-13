@@ -1,40 +1,43 @@
 package com.quest.casestudies.serviceCenterBMW;
 
-public class ElectricVehicle extends Vehicle {
-    private  double batteryCapacity;
+public class ElectricVehicle extends Vehicle{
+
+    private double batteryCapacity;
     private double rangePerCharge;
 
 
-    public ElectricVehicle( String brand, String model, int year, double mileage, String ownerName,double batteryCapacity,double rangePerCharge) {
-        super(brand, model, year, mileage, ownerName);
-        if (batteryCapacity < 0 || rangePerCharge < 0) {
-            throw new IllegalArgumentException("Battery capacity and range cannot be negative");
-        }
-        this.batteryCapacity = batteryCapacity;
-        this.rangePerCharge = rangePerCharge;
+    public ElectricVehicle(String vin, String brand, String model, int year, double mileage, String ownerName,double price,double batteryCapacity, double rangePerCharge) {
+        super(vin, brand, model, year, mileage, ownerName,price);
+        setBatteryCapacity(batteryCapacity);
+        setRangePerCharge(rangePerCharge);
     }
 
     public double getBatteryCapacity() {
-        return batteryCapacity;
-    }
-
-    public void setBatteryCapacity(double batteryCapacity) {
-        this.batteryCapacity = batteryCapacity;
+        return this.batteryCapacity;
     }
 
     public double getRangePerCharge() {
-        return rangePerCharge;
+        return this.rangePerCharge;
+    }
+
+    public void setBatteryCapacity(double batteryCapacity) {
+        if(batteryCapacity<=0){
+            throw new IllegalArgumentException("Battery capacity cant be 0");
+        }
+        this.batteryCapacity=batteryCapacity;
     }
 
     public void setRangePerCharge(double rangePerCharge) {
-        this.rangePerCharge = rangePerCharge;
+        if(rangePerCharge<=0){
+            throw new IllegalArgumentException("Range per charge cant be 0");
+        }
+        this.rangePerCharge=rangePerCharge;
     }
 
     @Override
     public String toString() {
-        return  super.toString()+  "ElectricVehicle{" +
-                "batteryCapacity=" + batteryCapacity +
-                ", rangePerCharge=" + rangePerCharge +
-                '}';
+        return String.format("%s\nBattery Capacity: %.2f kWh\nRange Per Charge: %.2f km",
+                super.toString(), batteryCapacity, rangePerCharge);
     }
+
 }

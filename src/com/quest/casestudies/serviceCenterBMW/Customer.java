@@ -1,62 +1,69 @@
 package com.quest.casestudies.serviceCenterBMW;
 
-public class Customer {
-    private static int count=0;
-    private final String customerId;
+import java.io.Serializable;
+
+public class Customer implements Serializable {
+
+    private String customerId;
     private String name;
     private String email;
     private Vehicle vehicle;
 
-    public Customer(String name, String email,Vehicle vehicle) {
-        customerId="Customer"+(++count);
-        this.name = name;
-        this.email = email;
-        this.vehicle = vehicle;
-    }
-
-    public static int getCount() {
-        return count;
-    }
-
-    public static void setCount(int count) {
-        Customer.count = count;
+    public Customer(String customerId, String name, String email, Vehicle vehicle) {
+        setCustomerId(customerId);
+        setName(name);
+        setEmail(email);
+        setVehicle(vehicle);
     }
 
     public String getCustomerId() {
-        return customerId;
+        return this.customerId;
     }
 
     public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        return this.name;
     }
 
     public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+        return this.email;
     }
 
     public Vehicle getVehicle() {
-        return vehicle;
+        return this.vehicle;
+    }
+
+    public void setCustomerId(String customerId) {
+        if (customerId == null) {
+            throw new IllegalArgumentException("Customer ID cannot be empty or null.");
+        }
+        this.customerId = customerId;
+    }
+
+    public void setName(String name) {
+        if (name == null) {
+            throw new IllegalArgumentException("Name cannot be empty or null.");
+        }
+        this.name = name;
+    }
+
+    public void setEmail(String email) {
+        if (email == null) {
+            throw new IllegalArgumentException("Invalid email address.");
+        }
+        this.email = email;
     }
 
     public void setVehicle(Vehicle vehicle) {
+        if (vehicle == null) {
+            throw new IllegalArgumentException("Vehicle cannot be null.");
+        }
         this.vehicle = vehicle;
     }
 
+
     @Override
     public String toString() {
-        return "Customer{" +
-                "customerId='" + customerId + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", vehicle=" + vehicle +
-                '}';
+        return String.format("Customer ID: %s\nName: %s\nEmail: %s\nVehicle: %s",
+                this.customerId, this.name, this.email,  this.vehicle.getVin());
     }
 }

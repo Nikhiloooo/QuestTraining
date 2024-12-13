@@ -1,5 +1,7 @@
 package com.quest.casestudies.weathermonitoringsystem;
 
+import java.sql.SQLOutput;
+
 public class CityWeatherData implements WeatherOperations{
 
     protected CityWeather[] cities;
@@ -14,6 +16,12 @@ public class CityWeatherData implements WeatherOperations{
     //method to add the city weather details
     @Override
     public void addCity(String name, double currentTemperature, int humidity, String condition) {
+        for(int i=0; i<cityCount; i++) {
+            if(cities[i].getName().equalsIgnoreCase(name)) {
+                System.out.println("city already exists");
+                return;
+            }
+        }
         if (cityCount < cities.length) {
             cities[cityCount++] = new CityWeather(name, currentTemperature, humidity, condition);
         } else {

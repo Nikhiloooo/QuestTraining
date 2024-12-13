@@ -32,7 +32,9 @@ public class EmployeeStreamOperations {
         // Finding the employee with the maximum salary
         Optional<Employee> maxSalaryEmployee = employees.stream()
                 .max((emp1, emp2) -> Double.compare(emp1.getSalary(), emp2.getSalary()));
+
         maxSalaryEmployee.ifPresent(emp -> System.out.println("Max salary employee: " + emp));
+
 
 
 
